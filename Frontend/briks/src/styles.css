@@ -1,0 +1,47 @@
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    max-width: 300px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .houses-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  /* .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-container div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-container label {
+    margin-right: 8px;
+  }
+  
+  .filter-container select,
+  .filter-container input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Optional styles for the filter container */
+  /* .filter-container {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  } */ 
