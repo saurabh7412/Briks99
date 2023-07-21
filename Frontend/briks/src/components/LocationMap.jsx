@@ -9,7 +9,7 @@ const LocationMap = ({ lat, long, tag }) => {
 
   const customIcon = new Icon({
     iconUrl:image,
-    iconSize: [30, 30],
+    iconSize: [40, 40],
   });
   return (
     <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%' }}>

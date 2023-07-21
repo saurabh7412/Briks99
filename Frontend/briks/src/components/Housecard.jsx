@@ -1,6 +1,7 @@
 // HouseCard.js
 import React from 'react';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const HouseCard = ({ house }) => {
   return (
@@ -13,7 +14,9 @@ const HouseCard = ({ house }) => {
       maxW="500px"
     >
      <Flex h="200px" justifyContent="center" alignItems="center">
+     <Link to={`/posts/${house.id}`}>
       <Image src={house.image} alt={house.title} borderRadius="md" h="200px"/>
+      </Link>
       </Flex>
       <Flex mt={2} justifyContent="space-between" alignItems="center">
         <Text fontSize="lg" fontWeight="bold">
