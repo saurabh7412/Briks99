@@ -20,7 +20,7 @@ const Mainpage = () => {
           <h1>Mortgage Calculator</h1>
 
           <p>
-            Estimate your payment with our easy-to-use loan calculator. Then get
+            Estimate your payment with our easy-to-use loan Calculator. Then get
             pre-qualified to buy by a local lender.
           </p>
 
