@@ -1,21 +1,32 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionType";
+// reducer.js
+import {
+  LOGIN_ERROR,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  SIGNUP_ERROR,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+} from "./actionType";
 
 const initialState = {
+  isAuth: false,
   isLoading: false,
   isError: false,
-  isAuth: false,
-  token: "",
+  token: null, // For login success
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case LOGIN_REQUEST: {
-      return { ...state, isLoading: false };
+    case LOGIN_REQUEST:
+    case SIGNUP_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
     }
-    case LOGIN_SUCCESS: {
+    case LOGIN_SUCCESS:
+    case SIGNUP_SUCCESS: {
       return { ...state, isLoading: false, isAuth: true, token: payload };
     }
-    case LOGIN_FAILURE: {
+    case LOGIN_ERROR:
+    case SIGNUP_ERROR: {
       return { ...state, isLoading: false, isError: true };
     }
     default: {
