@@ -2,6 +2,7 @@
 import React from 'react';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import "../components/HouseListing.css";
 
 const HouseCard = ({ house }) => {
   return (
@@ -15,7 +16,7 @@ const HouseCard = ({ house }) => {
     >
      <Flex h="200px" justifyContent="center" alignItems="center">
      <Link to={`/posts/${house.id}`}>
-      <Image src={house.image} alt={house.title} borderRadius="md" h="200px"/>
+      <Image src={house.image} alt={house.title} className="img-zoomable" borderRadius="md" h="200px"/>
       </Link>
       </Flex>
       <Flex mt={2} justifyContent="space-between" alignItems="center">

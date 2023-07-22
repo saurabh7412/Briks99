@@ -6,6 +6,7 @@ import { useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import LocationMap from '../components/LocationMap';
+import "../components/HouseListing.css";
 
 export const SingleHousePage = () => {
   const { id } = useParams();
@@ -271,7 +272,7 @@ export const SingleHousePage = () => {
       </Flex>
 
       <Flex flexDirection={{ base: 'column', md: 'row' }} mt={4}>
-        <Image src={house.image} alt={house.title} borderRadius="md" h="400px" w={{ base: '100%', md: '60%' }} />
+        <Image src={house.image} alt={house.title} className="img-zoomable" borderRadius="md" h="400px" w={{ base: '100%', md: '60%' }} />
         <Box ml={{ base: 0, md: 4 }} width={{ base: '100%', md: '40%' }}>
           <LocationMap lat={house.lat} long={house.long} tag={house.location} />
         </Box>
