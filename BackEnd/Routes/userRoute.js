@@ -11,8 +11,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 
-
-router.get('/', async (req,res)=>{
+router.get('/get', async (req,res)=>{
     try {
         const users = await Users.find();
         res.send({AllUsers : users})
@@ -66,7 +65,7 @@ router.post('/login', async(req,res)=>{
             return res.status(400).send('Wrong Password')
         }
 
-        const token = jwt.sign({userID : userCheck._id, email : userCheck.email}, 'abc123', {expiresIn : '5d'});
+        const token = jwt.sign({userID : userCheck._id, email : userCheck.email}, 'abc123', {expiresIn : '5d'}); // token = abcd
 
         res.status(200).send({msg : 'Login Successful', token});
         
@@ -85,7 +84,7 @@ router.get('/logout', async(req,res)=>{
 
     const BlackListed = await BL.findOne({token});
     if(BlackListed) {
-        res.status(400).send('Token already expried')
+        res.status(400).send('Token already Expired')
     }
     else{
         const blacklist = await BL.create({token});
@@ -96,74 +95,6 @@ router.get('/logout', async(req,res)=>{
 
 })
 
-
-// router.patch('/edit/:id', async(req,res)=>{
-
-// })
-
-
-
-
-
-
-
-
-
-
-// router.post('/login', async(req,res)=>{
-//     try {
-
-//         const {name,email, pass} = req.body;
-
-//         const data = await Users.findOne({email});
-
-//         // console.log(data);
-
-//         if(!data){
-//             res.send('Login First');
-//         }
-
-
-//         bcrypt.compare(pass,data.pass, function(err,result){
-//             if(err){
-//                 res.send('Wrong Credentials')
-//             }else{
-//                 const token =  jwt.sign({userID : data._id, username : name} , "secret123",{expiresIn: '4d'})
-//             }
-//         })
-        // const verify = await bcrypt.compare(pass, data.pass);
-
-        // if(!verify){
-        //     res.send("Wrong Password")
-        // }else{
-        //     const token =  jwt.sign({userID : data._id} , "secret123",{expiresIn: '4d'})
-
-        //     const refreshToken = jwt.sign({userID : data._id},'secret1234',{expiresIn : '7d'})
-
-        //     res.send({"msg": 'Login Successful', "token" : token, "refresh Token": refreshToken})
-        // }
-
-//     } catch (error) {
-//         res.send(error)
-//     }
-// })
-
-
-// router.get('/logout', async (req,res)=>{
-//     try {
-//         const token = req.headers.authorization?.split(" ")[1];
-        
-//         if(!token) res.send('Login first');
-
-//         else{
-//             await BL.create({token})
-
-//             res.send('Logged Out !')
-//         }
-//     } catch (error) {
-//         res.send(error)
-//     }
-// })
 
 
 // router.get('/refreshToken', (req,res)=>{
