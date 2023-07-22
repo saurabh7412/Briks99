@@ -18,6 +18,10 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import SignupLogo from "../img/signup.png"
+
 const Signup = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.isAuth);
@@ -64,6 +68,8 @@ const Signup = () => {
   }
 
   return (
+    <Box>
+      <Navbar/>
     <Flex
       minH={"70vh"}
       align={"center"}
@@ -199,13 +205,20 @@ const Signup = () => {
         >
           <Image
             w={"100%"}
-            src="https://o.remove.bg/downloads/b4857859-2e30-47fd-8cc2-9aceb80f14c6/sign-page-abstract-concept-vector-illustration_107173-25670-removebg-preview.png"
+            src={SignupLogo}
             alt="signup-img"
           />
         </Box>
       </Flex>
     </Flex>
+    <br/>
+    <Footer/>
+    </Box>
   );
 };
 
 export default Signup;
+
+//
+
+//https://o.remove.bg/downloads/b4857859-2e30-47fd-8cc2-9aceb80f14c6/sign-page-abstract-concept-vector-illustration_107173-25670-removebg-preview.png
