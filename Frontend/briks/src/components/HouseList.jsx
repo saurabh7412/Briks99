@@ -3,7 +3,12 @@ import { Box, Flex, Select, Input, SimpleGrid } from '@chakra-ui/react';
 import HouseCard from './Housecard';
 import axios from 'axios';
 
+
 const HousesListing = () => {
+
+  const labelStyle = {
+    fontWeight: 'bold',
+  };
   const [houses, setHouses] = useState([]);
   const [filteredHouses, setFilteredHouses] = useState([]);
   const [typeFilter, setTypeFilter] = useState('');
@@ -24,7 +29,7 @@ const HousesListing = () => {
             Authorization: `${token}`,
           },
         };
-        // const response = await axios.get('https://real-gray-salamander-tie.cyclic.app/data',data);
+        // const response = await axios.get('https://real-gray-salamander-tie.cyclic.app/data/');
         const response = await axios.get('https://enormous-library-3081-backend.onrender.com/posts/',data1);
         console.log(response.data)
         setHouses(response.data);
@@ -112,8 +117,8 @@ const HousesListing = () => {
     // </Box>
     <Box p={4} maxW="1200px" m="auto">
       <Flex flexWrap="wrap" justify="space-between" align="center" mb={4}>
-        <Box w={{ sm: '100%', md: 'auto' }}>
-          <label htmlFor="type-filter">Type:</label>
+        <Box w={{ sm: '100%', md: 'auto' }} >
+          <label htmlFor="type-filter" style={labelStyle}>Type:</label>
           <Select
             id="type-filter"
             value={typeFilter}
@@ -126,16 +131,21 @@ const HousesListing = () => {
           </Select>
         </Box>
         <Box w={{ sm: '100%', md: 'auto' }} mt={{ sm: 4, md: 0 }}>
-          <label htmlFor="bedroom-filter">Bedroom:</label>
-          <Input
+          <label htmlFor="bedroom-filter" style={labelStyle}>Bedroom:</label>
+          <Select
             id="bedroom-filter"
-            type="number"
             value={bedroomFilter}
             onChange={(e) => setBedroomFilter(e.target.value)}
-          />
+          >
+            {[...Array(6)].map((_, index) => (
+              <option key={index} value={index + 1}>
+                {index + 1}
+              </option>
+            ))}
+          </Select>
         </Box>
         <Box w={{ sm: '100%', md: 'auto' }} mt={{ sm: 4, md: 0 }}>
-          <label htmlFor="price-filter">Max Price:</label>
+          <label htmlFor="price-filter" style={labelStyle}>Max Price:</label>
           <Input
             id="price-filter"
             type="number"
