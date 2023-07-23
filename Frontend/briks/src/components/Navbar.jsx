@@ -8,41 +8,77 @@ import {
   useDisclosure,
   useColorMode,
   useMediaQuery,
+  Button,
 } from "@chakra-ui/react";
-import { HamburgerIcon, SearchIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-import WebLogo from "../img/Logo.png";
 
-const links = [
-  { path: "/buy", title: "Buy" },
-  { path: "/rent", title: "Rent" },
-  { path: "/blog", title: "Blog" },
-  { path: "/login", title: "login" },
-  { path: "/signup", title: "Signup" },
-];
+import { HamburgerIcon, SearchIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import WebLogo from "../img/newlogo.png";
+import { login, logout } from "../Redux/AuthReducer/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const [isSmallerThanMedium] = useMediaQuery("(max-width: 768px)");
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth.isAuth);
+  const dispatch = useDispatch();
+
+  // console.log(auth)
+
+  let links;
+
+  if(auth){
+     links = [
+      { path: "/buy", title: "Buy" },
+      { path: "/rent", title: "Rent" },
+      { path: "/blog", title: "Blog" }
+    ];
+
+  } else {
+     links = [
+      { path: "/buy", title: "Buy" },
+      { path: "/rent", title: "Rent" },
+      { path: "/blog", title: "Blog" },
+      { path: "/login", title: "login" },
+      { path: "/signup", title: "Signup" },
+    ];
+  }
+
+
+
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.clear()
+    // Redirect to the login page after logout
+    // window.location.href = "/login"; // Replace with the path to your login page
+    navigate("/");
+  };
 
   const mobileBgColor = colorMode === "light" ? "#333" : "black";
-// const mobileBgColor = "#333";
+  // const mobileBgColor = "#333";
   return (
     <Box
       bg={
-        isSmallerThanMedium ? mobileBgColor : colorMode === "light" ? "white" : "black"
+        isSmallerThanMedium
+          ? mobileBgColor
+          : colorMode === "light"
+          ? "white"
+          : "black"
       }
       py={3}
       position="sticky"
       top="0" // Stick the navbar at the top
       zIndex="999"
-    //   border="1px solid"
-    //   BoxShadow= "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px"
-    // BoxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-    BoxShadow= "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset"
-    
+      //   border="1px solid"
+      //   BoxShadow= "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px"
+      // BoxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+      BoxShadow="rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset"
     >
-        
       <Flex
         alignItems="center"
         justifyContent="space-between"
@@ -82,8 +118,9 @@ const Navbar = () => {
               >
                 {link.title}
               </Link>
-            ))}
-            {/* Login/Sign up button for large screens */}
+            ))} 
+            
+            {/* Login/Sign up button for large screens
             {/* <Link
               href="/login"
               px={4}
@@ -93,6 +130,13 @@ const Navbar = () => {
             >
               Login / Sign Up
             </Link> */}
+
+            {/* <a href="/">home</a>
+            <br/>
+           <a style={{visibility: auth ? "hidden" : "visible"}} href="/login">login</a>
+            <br/>
+            <a href="/">home</a>
+            <a href="/">home</a> */}
           </Flex>
           <Box ml={4}>
             <Input
@@ -112,6 +156,7 @@ const Navbar = () => {
           onClick={toggleColorMode}
           ml={4}
         />
+        {auth && <Button onClick={handleLogout}>Logout</Button>}
       </Flex>
 
       {/* Mobile Menu */}
@@ -157,16 +202,15 @@ const Navbar = () => {
             </Box>
             {/* Login/Sign up button for mobile */}
             <Box mt={4} ml={4}>
-              <Link href="/login" px={4} py={2} display="block" color="white">
+              {/* <Link href="/login" px={4} py={2} display="block" color="white">
                 Login / Sign Up
-              </Link>
+              </Link> */}
             </Box>
           </Box>
         )}
       </Box>
       {/* <hr/> */}
     </Box>
-    
   );
 };
 

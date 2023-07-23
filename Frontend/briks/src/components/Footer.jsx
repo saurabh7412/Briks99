@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Logo from "../img/Logo.png"
+import Logo from "../img/newlogo.png"
 import {
   Box,
   Container,
@@ -38,7 +38,7 @@ export default function Footer() {
                 style={{ marginTop: "-15px" }}
               />
               <Text align={"left"}>
-                Trulia CorporateAbout Zillow GroupFair Housing
+                Briks99 CorporateAbout GroupFair Housing
                 GuideCareersNewsroomInvestor RelationsAdvertising
                 TermsPrivacyTerms of UseListings Quality PolicySubscription
                 TermsHelpPrivacy PortalCookie Preference Do Not Sell or Share My
