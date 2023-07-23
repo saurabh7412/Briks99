@@ -6,9 +6,10 @@ import ThreeDivs from "./ThreeDivs";
 import { SetTimeCarousel } from "./SetTimeCarousel";
 import Gallery from "./Gallery";
 
-export const Home = () => {
+export const Home = ({userName}) => {
   return (
     <div>
+      {/* <h1>Welcome, {userName}!</h1> */}
       <Navbar />
       <br />
 
