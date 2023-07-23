@@ -18,9 +18,14 @@ HOW TO GO THROUGH THE PROJECT -
    - Username -  saurabh
    - Password -  saurabh123
 
-## Landing Page
+## Landing Page (Dark Theme)
 
 ![landing page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/7fefce9b-5763-4af3-97c9-31e5d4527816)
+
+## Landing Page (Light Theme)
+
+![landing page light](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/4d57f2a9-dc62-4d44-b30f-5895e3f68f24)
+
 
 ## Property Listing
 
