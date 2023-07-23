@@ -4,6 +4,7 @@ import {SingleHousePage} from "../Pages/singlehousepage";
 import { Home } from "../Pages/Home";
 import Login  from "../Pages/Login";
 import Signup from "../Pages/Signup";
+import MortagageCal from "../Pages/MortagageCal";
 
 export const AllRoutes = () => {
     return (
@@ -14,6 +15,7 @@ export const AllRoutes = () => {
           <Route path="/posts/:id" element={<SingleHousePage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup/>}></Route>
+          <Route path="/mortagagecal" element={<MortagageCal/>}></Route>
         </Routes>
       </div>
     );

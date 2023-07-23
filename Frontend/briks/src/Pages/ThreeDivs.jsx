@@ -170,8 +170,7 @@ const ThreeDivs = () => {
             textAlign: "center",
             margin: isSmallerThan768 ? "20px 0" : "200px 0 20px", // Adjust the margin based on screen size
           }}
-        >
-        </h1>
+        ></h1>
         <Box
           display="flex"
           justifyContent="center"
@@ -192,13 +191,15 @@ const ThreeDivs = () => {
               With over 1 million+ homes for sale available on the website,
               Trulia can match you with a house you will want to call home.
             </Text>
-            <StyledButton
-              mt="4"
-              colorScheme="blue"
-              size={isSmallerThan768 ? "sm" : "md"}
-            >
-              Find Home
-            </StyledButton>
+            <a href="/posts/">
+              <StyledButton
+                mt="4"
+                colorScheme="blue"
+                size={isSmallerThan768 ? "sm" : "md"}
+              >
+                Find Home
+              </StyledButton>
+            </a>
           </StyledDiv>
           {/* ... Two more divs with the same structure */}
           <StyledDiv isSmallerThan768={isSmallerThan768}>
@@ -214,13 +215,16 @@ const ThreeDivs = () => {
               With over 1 million+ homes for sale available on the website,
               Trulia can match you with a house you will want to call home.
             </Text>
-            <StyledButton
-              mt="4"
-              colorScheme="blue"
-              size={isSmallerThan768 ? "sm" : "md"}
-            >
-              Find Home
-            </StyledButton>
+
+            <a href="/posts/">
+              <StyledButton
+                mt="4"
+                colorScheme="blue"
+                size={isSmallerThan768 ? "sm" : "md"}
+              >
+                Find Home
+              </StyledButton>
+            </a>
           </StyledDiv>
 
           <StyledDiv isSmallerThan768={isSmallerThan768}>
@@ -236,13 +240,15 @@ const ThreeDivs = () => {
               With over 1 million+ homes for sale available on the website,
               Trulia can match you with a house you will want to call home.
             </Text>
-            <StyledButton
-              mt="4"
-              colorScheme="blue"
-              size={isSmallerThan768 ? "sm" : "md"}
-            >
-              Find Home
-            </StyledButton>
+            <a href="/posts/">
+              <StyledButton
+                mt="4"
+                colorScheme="blue"
+                size={isSmallerThan768 ? "sm" : "md"}
+              >
+                Find Home
+              </StyledButton>
+            </a>
           </StyledDiv>
         </Box>
       </Box>
