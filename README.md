@@ -1,15 +1,15 @@
 # enormous-library-3081
 
-# ATTIRE-GURU
+# BRIKS99
 
 -----
-### E-COMMERCE WEBSITE FOR FASHION PRODUCTS* 
+###  ONLINE REAL ESTATE MARKETPLACE* 
 
-Project: Make a website with provided reference website images.
+Project: Make a website with provided reference website.
 
-Original-Website-Images : https://dribbble.com/shots/20389012-Sopa-Marketplace-Landing-Page
+Original-Website-Images : https://www.trulia.com/
 
-Cloned-Website: https://attire-guru.netlify.app/
+Cloned-Website: 
 
 HOW TO GO THROUGH THE PROJECT -
 - First, go to Login or signup ( for the first time ).
@@ -20,41 +20,56 @@ HOW TO GO THROUGH THE PROJECT -
 
 ## Landing Page
 
-![Screenshot 2023-06-19 000548](https://github.com/saurabh7412/cluttered-stranger-7385/assets/121215502/2d630738-872d-4d61-a5a4-7f37ee31c839)
+![landing page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/7fefce9b-5763-4af3-97c9-31e5d4527816)
+
+## Property Listing
+
+![product page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/620f33d4-5cb1-406c-8947-e1087cc098c1)
 
 
-## Product Page
+## Single Property Listing
 
-![Screenshot 2023-06-19 000711](https://github.com/saurabh7412/cluttered-stranger-7385/assets/121215502/d7837337-0153-4e36-b1b2-4ae65cd5a8b9)
+![singleproduct page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/5fc8ad7b-732c-4778-bf05-c64e7abfe5fd)
 
-## Admin Page
+## Login Page
 
-![Screenshot 2023-06-19 002052](https://github.com/saurabh7412/cluttered-stranger-7385/assets/121215502/c3bb224c-a04e-45bf-9d40-bd303cb53347)
+![login page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/1fc34898-4ade-4258-a1c8-4de0ad81150d)
 
+## Register Page
 
-This E-Commerce website specializes in selling fashion products for men, women, and kids. The website provides 16,000 products of different products like shoes, jeans, shirts, kurtas, etc.
-
-In this project, We have tried to manipulate dom elements using REACT with TYPESCRIPT, manage state changes using REDUX, CHAKRA UI Library, style using CSS in react, REACT TOASTIFY, styled-components and tried to make a responsive website and implement dynamic routing to persist data. With the self-learning efforts and the technology stack, that we have learned till Unit-5 in the Masai School, we were able to clone the whole website with the same looks & features.
-
-This is a collaborative project built within 5 days by a team of 3 members 
-
--->  Saurabh Bhatt ( Team Lead ) --> Admin Side
+![signup page](https://github.com/saurabh7412/enormous-library-3081/assets/121215502/965f92d1-ac9c-4938-958b-58be310382bc)
 
 
--->  Vishal Giri --> Product Page, Single Product Page, Add to Cart
+Briks99 is an Indian online real estate marketplace which is a subsidiary of Zillow. It facilitates buyers and renters to find homes and neighborhoods across the United States through recommendations, local insights, and map overlays that offer details on commutes, schools, churches, and nearby businesses.
+
+In this project, We have tried to manipulate dom elements using REACT, manage state changes using REDUX, CHAKRA UI Library, style using CSS in react, styled components, and tried to make a responsive website and implement dynamic routing to persist data. We have managed our database globally using MongoDB Atlas and Express. With the self-learning efforts and the technology stack, that we have learned till Unit-6 in the Masai School, we were able to clone the whole website with the same looks & features.
+
+This is a collaborative project built within 5 days by a team of 4 members 
+
+-->  Saurabh Bhatt ( Team Lead ) --> BackEnd with some frontend page
 
 
--->  Murad Kodalwad  --> Home Page, Login/SignUp, Payment Page
+-->  Md Abdul Qadir --> Landing Page, Login / Signup page.
+
+
+-->  Shubham Singh  --> All Product Page, Single Product Page.
+
+
+-->  Ganesh Bahera  --> Admin Side.
 
 
 
 # Technology Stack Used 🌟
+* MongoDB Atlas
+* EXPRESS
+* MONGOOSE
 * REACT
-* TYPESCRIPT
+* REDUX
 * REACT-REDUX
 * CHAKRA UI Library
+* Leaflet, React-leaflet
+* React-multi-carousel, React-Responsive Carousel, React-Carousel-Elasticss
 * Styled-components
-* REACT-Toastify
 * react-router-dom library
 * axios library
 * Thunk Middleware
@@ -62,7 +77,7 @@ This is a collaborative project built within 5 days by a team of 3 members
 * CSS
 * JavaScript
 
-For storing user data we also used JSON-Server & REDUX Store.
+For storing user data we also used MongoDB Atlas.
 
 ## How to run the Project
 * Open the pages directory.
