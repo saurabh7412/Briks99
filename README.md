@@ -9,7 +9,7 @@ Project: Make a website with provided reference website.
 
 Original-Website-Images : https://www.trulia.com/
 
-Cloned-Website: 
+Cloned-Website: https://stalwart-fairy-7587d7.netlify.app/
 
 HOW TO GO THROUGH THE PROJECT -
 - First, go to Login or signup ( for the first time ).
