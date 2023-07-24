@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
+// <<<<<<< finial-code-briks99
+import Logo from "../img/newlogo.png";
+// =======
 import Logo from "../img/newlogo.png"
+// >>>>>>> main
 import {
   Box,
   Container,
@@ -84,3 +88,6 @@ export default function Footer() {
     </Box>
   );
 }
+
+
+///lfsjkfjslfjlskdjfl

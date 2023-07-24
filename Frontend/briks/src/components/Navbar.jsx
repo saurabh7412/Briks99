@@ -10,6 +10,14 @@ import {
   useMediaQuery,
   Button,
 } from "@chakra-ui/react";
+// <<<<<<< finial-code-briks99
+
+import { HamburgerIcon, SearchIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import WebLogo from "../img/newlogo.png";
+import { login, logout } from "../Redux/AuthReducer/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// =======
 
 import { HamburgerIcon, SearchIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import WebLogo from "../img/newlogo.png";
@@ -18,8 +26,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
+// >>>>>>> main
 
-const Navbar = () => {
+const Navbar = ({username}) => {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const [isSmallerThanMedium] = useMediaQuery("(max-width: 768px)");
@@ -31,6 +40,19 @@ const Navbar = () => {
 
   let links;
 
+// <<<<<<< finial-code-briks99
+  if (auth) {
+    links = [
+      { path: "/posts", title: "Buy" },
+      { path: "/posts", title: "Rent" },
+      { path: "/mortagagecal", title: "Mortagage" },
+    ];
+  } else {
+    links = [
+      { path: "/posts", title: "Buy" },
+      { path: "/posts", title: "Rent" },
+      { path: "/mortagagecal", title: "Mortagage" },
+// =======
   if(auth){
      links = [
       { path: "/buy", title: "Buy" },
@@ -43,17 +65,24 @@ const Navbar = () => {
       { path: "/buy", title: "Buy" },
       { path: "/rent", title: "Rent" },
       { path: "/blog", title: "Blog" },
+// >>>>>>> main
       { path: "/login", title: "login" },
       { path: "/signup", title: "Signup" },
     ];
   }
 
+// <<<<<<< finial-code-briks99
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.clear();
+// =======
 
 
 
   const handleLogout = () => {
     dispatch(logout());
     localStorage.clear()
+// >>>>>>> main
     // Redirect to the login page after logout
     // window.location.href = "/login"; // Replace with the path to your login page
     navigate("/");
@@ -118,8 +147,13 @@ const Navbar = () => {
               >
                 {link.title}
               </Link>
+// <<<<<<< finial-code-briks99
+            ))}
+
+// =======
             ))} 
             
+// >>>>>>> main
             {/* Login/Sign up button for large screens
             {/* <Link
               href="/login"
@@ -157,6 +191,10 @@ const Navbar = () => {
           ml={4}
         />
         {auth && <Button onClick={handleLogout}>Logout</Button>}
+// <<<<<<< finial-code-briks99
+        {auth && <Button >Welcome {username}</Button>}
+// =======
+// >>>>>>> main
       </Flex>
 
       {/* Mobile Menu */}
