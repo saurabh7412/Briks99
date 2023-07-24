@@ -56,15 +56,36 @@ export const SingleHousePage = () => {
 
   const [isRequestInfoFormValid1, setIsRequestInfoFormValid] = useState(false);
 
+  const [tourType, setTourType] = useState('');
+  const [tourDate, setTourDate] = useState('');
+  const [tourTime, setTourTime] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [isTourFormValid, setIsTourFormValid] = useState(false);
+
+  const [requestInfoPhoneNumber, setRequestInfoPhoneNumber] = useState('');
+  const [requestInfoEmail, setRequestInfoEmail] = useState('');
+  const [requestInfoMessage, setRequestInfoMessage] = useState('');
+
+  const [isRequestInfoFormValid1, setIsRequestInfoFormValid] = useState(false);
+
+
+
   useEffect(() => {
     const fetchHouseData = async () => {
       try {
+// <<<<<<< finial-code-briks99
         const response = await axios.get(
           `https://enormous-library-3081-backend.onrender.com/posts/${id}`
         );
         //  const response = await axios.get(`https://real-gray-salamander-tie.cyclic.app/data/${id}`);
         console.log(response.data.singlePost);
         setHouse(response.data.singlePost);
+// =======
+        const response = await axios.get(`https://enormous-library-3081-backend.onrender.com/posts/${id}`);
+        //  const response = await axios.get(`https://real-gray-salamander-tie.cyclic.app/data/${id}`);
+        setHouse(response.data);
+// >>>>>>> main
       } catch (error) {
         console.error("Error fetching house data:", error);
       }
@@ -81,7 +102,11 @@ export const SingleHousePage = () => {
     onRequestInfoModalOpen();
   };
 
+// <<<<<<< finial-code-briks99
   const handleTourScheduled = async () => {
+// =======
+  const handleTourScheduled = async() => {
+// >>>>>>> main
     // Perform form validation
     if (!tourType || !tourDate || !tourTime || !phoneNumber || !email) {
       // If any of the required fields are empty, set form validity to false
@@ -89,14 +114,21 @@ export const SingleHousePage = () => {
 
       // Show error toast
       toast({
+// <<<<<<< finial-code-briks99
         title: "Form Error",
         description: "Please fill all the required fields.",
         status: "error",
+// =======
+        title: 'Form Error',
+        description: 'Please fill all the required fields.',
+        status: 'error',
+// >>>>>>> main
         duration: 3000,
         isClosable: true,
       });
     } else {
       setIsTourFormValid(true);
+// <<<<<<< finial-code-briks99
 
       onScheduleTourModalClose();
 
@@ -129,18 +161,60 @@ export const SingleHousePage = () => {
         // Handle the response from the backend if needed
       } catch (error) {
         console.error("Error storing tour data:", error);
+// =======
+
+      onScheduleTourModalClose();
+
+      toast({
+        title: 'Tour Scheduled',
+        description: 'Your tour has been scheduled successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+
+      try {
+        const formData = {
+            tour_type: tourType,
+            date: tourDate,
+            time: tourTime,
+            phone: phoneNumber,
+            email: email,
+        };
+        const res = await axios.post('https://enormous-library-3081-backend.onrender.com/tour', formData);
+         console.log(res.data)
+        setTourType('');
+        setTourDate('');
+        setTourTime('');
+        setPhoneNumber('');
+        setEmail('');
+        // Handle the response from the backend if needed
+      } catch (error) {
+        console.error('Error storing tour data:', error);
+// >>>>>>> main
       }
     }
   };
 
+// <<<<<<< finial-code-briks99
   const handleRequestInfoSubmitted = async () => {
+// =======
+  
+  const handleRequestInfoSubmitted = async() => {
+// >>>>>>> main
     if (!isRequestInfoFormValid()) {
       setIsRequestInfoFormValid(false);
 
       toast({
+// <<<<<<< finial-code-briks99
         title: "Form Error",
         description: "Please fill all the required fields.",
         status: "error",
+// =======
+        title: 'Form Error',
+        description: 'Please fill all the required fields.',
+        status: 'error',
+// >>>>>>> main
         duration: 3000,
         isClosable: true,
       });
@@ -160,6 +234,7 @@ export const SingleHousePage = () => {
         const formData = {
           phone: requestInfoPhoneNumber,
           email: requestInfoEmail,
+// <<<<<<< finial-code-briks99
           message: requestInfoMessage,
         };
         const res = await axios.post(
@@ -172,6 +247,17 @@ export const SingleHousePage = () => {
         setRequestInfoMessage("");
       } catch (error) {
         console.error("Error storing request info data:", error);
+// =======
+          message:requestInfoMessage,
+        };
+        const res = await axios.post('https://enormous-library-3081-backend.onrender.com/reqinfo', formData);
+        console.log(res.data)
+        setRequestInfoPhoneNumber('');
+        setRequestInfoEmail('');
+        setRequestInfoMessage("");
+      } catch (error) {
+        console.error('Error storing request info data:', error);
+// >>>>>>> main
       }
     }
   };
@@ -185,6 +271,7 @@ export const SingleHousePage = () => {
   }
 
   return (
+// <<<<<<< finial-code-briks99
     <Box>
       <Navbar/>
     <Flex flexDirection="column" alignItems="center">
@@ -198,6 +285,51 @@ export const SingleHousePage = () => {
         <Text fontSize="lg" color="gray.500" mb={4}>
           {house.location}
         </Text>
+// =======
+  
+    <Flex flexDirection="column" alignItems="center">
+    <Box p={4} maxWidth="1200px" width="100%">
+    <Text fontSize="lg" fontWeight="bold" mb={4}>
+      Property Info</Text>
+      <Text fontSize="3xl" fontWeight="bold" mb={2}>
+        {house.title}
+      </Text>
+      <Text fontSize="lg" color="gray.500" mb={4}>
+        {house.location}
+      </Text>
+
+      {/* Buttons */}
+      <Flex alignItems="center" >
+        <Button
+          backgroundColor="#f41515"
+          color="white"
+          size="lg"
+          my={2}
+          mx={2}
+          onClick={handleScheduleTour}
+          _hover={{
+            backgroundColor: 'white',
+            color: '#f41515',
+            border: '1px solid #f41515',
+          }}
+        >
+          Schedule a Tour
+        </Button>
+        <Button
+          size="lg"
+          my={2}
+          mx={2}
+          onClick={handleRequestInfo}
+          _hover={{
+            backgroundColor: 'white',
+            color: '#f41515',
+            border: '1px solid #f41515',
+          }}
+        >
+          Request Info
+        </Button>
+      </Flex>
+// >>>>>>> main
 
         {/* Buttons */}
         <Flex alignItems="center">
@@ -256,6 +388,7 @@ export const SingleHousePage = () => {
           {house.description}
         </Text>
 
+// <<<<<<< finial-code-briks99
         <Flex mt={4} alignItems="center">
           <Text fontSize="xl" fontWeight="bold">
             Price: ${house.price}
@@ -360,6 +493,75 @@ export const SingleHousePage = () => {
           isOpen={isRequestInfoModalOpen}
           onClose={onRequestInfoModalClose}
         >
+// =======
+      {/* Schedule Tour Modal */}
+      <Modal isOpen={isScheduleTourModalOpen} onClose={onScheduleTourModalClose}>
+          {/* Modal Content */}
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Schedule a Tour</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {/* Add your form fields for the "Schedule a Tour" modal here */}
+              <FormControl mb={4}>
+                <FormLabel>Tour Type</FormLabel>
+                <Select placeholder="Select tour type" value={tourType} onChange={(e) => setTourType(e.target.value)}>
+                  <option value="In-person">In-person</option>
+                  <option value="Virtual">Virtual</option>
+                </Select>
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Date</FormLabel>
+                <Input type="date" value={tourDate} onChange={(e) => setTourDate(e.target.value)} />
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Time</FormLabel>
+                <Input type="time" value={tourTime} onChange={(e) => setTourTime(e.target.value)} />
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Phone Number</FormLabel>
+                <Input type="tel" placeholder="Enter phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Email ID</FormLabel>
+                <Input type="email" placeholder="Enter email ID" value={email} onChange={(e) => setEmail(e.target.value)} />
+              </FormControl>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                backgroundColor="#f41515"
+                color="white"
+                mr={3}
+                onClick={onScheduleTourModalClose}
+                _hover={{
+                  backgroundColor: 'white',
+                  color: '#f41515',
+                  border: '1px solid #f41515',
+                }}
+              >
+                Close
+              </Button>
+              <Button
+                variant="ghost"
+                backgroundColor="#f41515"
+                color="white"
+                onClick={handleTourScheduled}
+                // isDisabled={!isTourFormValid}
+                _hover={{
+                  backgroundColor: 'white',
+                  color: '#f41515',
+                  border: '1px solid #f41515',
+                }}
+              >
+                Schedule a Tour
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
+      {/* Request Info Modal */}
+      <Modal isOpen={isRequestInfoModalOpen} onClose={onRequestInfoModalClose}>
+// >>>>>>> main
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Request Info</ModalHeader>
@@ -367,6 +569,7 @@ export const SingleHousePage = () => {
             <ModalBody>
               <FormControl mb={4}>
                 <FormLabel>Phone Number</FormLabel>
+// <<<<<<< finial-code-briks99
                 <Input
                   type="tel"
                   placeholder="Enter phone number"
@@ -391,6 +594,17 @@ export const SingleHousePage = () => {
                   value={requestInfoMessage}
                   onChange={(e) => setRequestInfoMessage(e.target.value)}
                 />
+// =======
+                <Input type="tel" placeholder="Enter phone number" value={requestInfoPhoneNumber} onChange={(e) => setRequestInfoPhoneNumber(e.target.value)} />
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Email</FormLabel>
+                <Input type="email" placeholder="Enter email" value={requestInfoEmail} onChange={(e) => setRequestInfoEmail(e.target.value)} />
+              </FormControl>
+              <FormControl mb={4}>
+                <FormLabel>Message</FormLabel>
+                <Input type="text" placeholder="Enter message" value={requestInfoMessage} onChange={(e) => setRequestInfoMessage(e.target.value)}/>
+// >>>>>>> main
               </FormControl>
             </ModalBody>
             <ModalFooter>
@@ -400,9 +614,15 @@ export const SingleHousePage = () => {
                 mr={3}
                 onClick={onRequestInfoModalClose}
                 _hover={{
+// <<<<<<< finial-code-briks99
                   backgroundColor: "white",
                   color: "#f41515",
                   border: "1px solid #f41515",
+// =======
+                  backgroundColor: 'white',
+                  color: '#f41515',
+                  border: '1px solid #f41515',
+// >>>>>>> main
                 }}
               >
                 Close
@@ -413,11 +633,19 @@ export const SingleHousePage = () => {
                 mr={3}
                 variant="ghost"
                 onClick={handleRequestInfoSubmitted}
+// <<<<<<< finial-code-briks99
                 // isDisabled={!isRequestInfoFormValid}
                 _hover={{
                   backgroundColor: "white",
                   color: "#f41515",
                   border: "1px solid #f41515",
+// =======
+                // isDisabled={!isRequestInfoFormValid} 
+                _hover={{
+                  backgroundColor: 'white',
+                  color: '#f41515',
+                  border: '1px solid #f41515',
+// >>>>>>> main
                 }}
               >
                 Request Info
@@ -425,9 +653,12 @@ export const SingleHousePage = () => {
             </ModalFooter>
           </ModalContent>
         </Modal>
+// <<<<<<< finial-code-briks99
       </Box>
     </Flex>
     <Footer/>
+// =======
+// >>>>>>> main
     </Box>
   );
 };

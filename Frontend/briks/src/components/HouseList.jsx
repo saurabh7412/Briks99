@@ -1,9 +1,17 @@
+// <<<<<<< finial-code-briks99
 import React, { useEffect, useState } from "react";
 import { Box, Flex, Select, Input, SimpleGrid, Button } from "@chakra-ui/react";
 import HouseCard from "./Housecard";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+// =======
+import React, { useEffect, useState } from 'react';
+import { Box, Flex, Select, Input, SimpleGrid, Button } from '@chakra-ui/react';
+import HouseCard from './Housecard';
+import axios from 'axios';
+
+// >>>>>>> main
 
 const HousesListing = () => {
   const labelStyle = {
@@ -16,6 +24,7 @@ const HousesListing = () => {
   const [bedroomFilter, setBedroomFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState("");
   const [loading, setLoading] = useState(true);
+// <<<<<<< finial-code-briks99
   const [page, setPage] = useState(1);
 
   const priceRangeOptions = [
@@ -25,6 +34,17 @@ const HousesListing = () => {
     { label: "$200,000 - $300,000", value: "200000-300000" },
     { label: "$300,000 - $400,000", value: "300000-400000" },
     { label: "More than $400,000", value: "400000-" },
+// =======
+  const[page, setPage]=useState(1)
+
+  const priceRangeOptions = [
+    { label: 'Any', value: '' },
+    { label: 'Less than $100,000', value: '0-100000' },
+    { label: '$100,000 - $200,000', value: '100000-200000' },
+    { label: '$200,000 - $300,000', value: '200000-300000' },
+    { label: '$300,000 - $400,000', value: '300000-400000' },
+    { label: 'More than $400,000', value: '400000-' },
+// >>>>>>> main
   ];
 
   useEffect(() => {
@@ -41,6 +61,7 @@ const HousesListing = () => {
           },
         };
         // const response = await axios.get('https://real-gray-salamander-tie.cyclic.app/data/');
+// <<<<<<< finial-code-briks99
         const response = await axios.get(
           `https://enormous-library-3081-backend.onrender.com/posts/?limit=6&page=${page}`,
           data1
@@ -48,6 +69,12 @@ const HousesListing = () => {
         console.log(response.data.AllPosts);
         setHouses(response.data.AllPosts);
         setFilteredHouses(response.data.AllPosts);
+// =======
+        const response = await axios.get(`https://enormous-library-3081-backend.onrender.com/posts/?limit=6&page=${page}`,data1);
+        console.log(response.data)
+        setHouses(response.data);
+        setFilteredHouses(response.data);
+// >>>>>>> main
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -60,8 +87,13 @@ const HousesListing = () => {
 
   useEffect(() => {
     handleFilter();
+// <<<<<<< finial-code-briks99
   }, [typeFilter, bedroomFilter, priceFilter]);
   // console.log(filteredHouses.AllPosts)
+// =======
+  }, [typeFilter, bedroomFilter, priceFilter,page]);
+  console.log(filteredHouses)
+// >>>>>>> main
 
   const handleFilter = () => {
     let filteredData = houses;
@@ -71,6 +103,7 @@ const HousesListing = () => {
     }
 
     if (bedroomFilter) {
+// <<<<<<< finial-code-briks99
       filteredData = filteredData.filter(
         (house) => house.bedrooms === bedroomFilter
       );
@@ -89,19 +122,39 @@ const HousesListing = () => {
         filteredData = filteredData.filter(
           (house) => house.price <= Number(maxPrice)
         );
+// =======
+      filteredData = filteredData.filter((house) => house.bedrooms === bedroomFilter);
+      console.log(filteredData)
+    }
+    if (priceFilter) {
+      const [minPrice, maxPrice] = priceFilter.split('-');
+
+      if (minPrice) {
+        filteredData = filteredData.filter((house) => house.price >= Number(minPrice));
+      }
+
+      if (maxPrice) {
+        filteredData =filteredData.filter((house) => house.price <= Number(maxPrice));
+// >>>>>>> main
       }
     }
 
+
     setFilteredHouses(filteredData);
   };
+
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
+// <<<<<<< finial-code-briks99
     <Box>
     <Navbar/>
+// =======
+ 
+// >>>>>>> main
     <Box p={4} maxW="1200px" m="auto">
       <Flex flexWrap="wrap" justify="space-between" align="center" mb={4}>
         <Box w={{ sm: "100%", md: "auto" }}>
@@ -135,7 +188,11 @@ const HousesListing = () => {
             ))}
           </Select>
         </Box>
+// <<<<<<< finial-code-briks99
         <Box w={{ sm: "100%", md: "auto" }} mt={{ sm: 4, md: 0 }}>
+// =======
+        <Box w={{ sm: '100%', md: 'auto' }} mt={{ sm: 4, md: 0 }}>
+// >>>>>>> main
           {/* <label htmlFor="price-filter" style={labelStyle}>Max Price:</label>
           <Input
             id="price-filter"
@@ -143,9 +200,13 @@ const HousesListing = () => {
             value={priceFilter}
             onChange={(e) => setPriceFilter(e.target.value)}
           /> */}
+// <<<<<<< finial-code-briks99
           <label htmlFor="price-filter" style={labelStyle}>
             Price Range:
           </label>
+// =======
+           <label htmlFor="price-filter" style={labelStyle}>Price Range:</label>
+// >>>>>>> main
           <Select
             id="price-filter"
             value={priceFilter}
@@ -169,6 +230,7 @@ const HousesListing = () => {
         )}
       </SimpleGrid>
 
+// <<<<<<< finial-code-briks99
       <Flex justify="space-between" align="center" flexWrap="wrap">
         <Button
           onClick={() => setPage((prev) => prev - 1)}
@@ -186,6 +248,19 @@ const HousesListing = () => {
       </Flex>
     </Box>
     <Footer/>
+// =======
+      <Flex justify="space-between" align="center">
+        <Button onClick={()=>setPage((prev)=>prev-1)} disabled={page === 1}>
+          Prev
+        </Button>
+        <Button  disabled={true}>
+        {page}  
+        </Button>
+        <Button onClick={()=>setPage((prev)=>prev+1)} disabled={Math.ceil(houses.length/6)===page}>
+          Next
+        </Button>
+      </Flex>
+// >>>>>>> main
     </Box>
 
 

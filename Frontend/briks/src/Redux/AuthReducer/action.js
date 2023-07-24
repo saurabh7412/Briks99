@@ -55,4 +55,8 @@ export const logout = () => (dispatch) => {
       dispatch({ type: LOGOUT_ERROR });
       console.error("Logout failed", err);
     });
+// <<<<<<< finial-code-briks99
 };
+// =======
+};
+// >>>>>>> main

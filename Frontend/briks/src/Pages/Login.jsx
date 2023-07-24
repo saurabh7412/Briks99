@@ -279,6 +279,7 @@ const Login = () => {
   const { isAuth } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const toast = useToast();
+// <<<<<<< finial-code-briks99
 
   // Check authentication state on page load
   useEffect(() => {
@@ -303,6 +304,23 @@ const Login = () => {
       navigate("/");
     }
   }, [isAuth, navigate, toast]);
+// =======
+  // console.log(isAuth);
+
+  if (isAuth) {
+    toast({
+      title: "Success",
+      description: "Login successful!",
+      status: "success",
+      position: "top",
+      duration: 4000,
+      isClosable: false,
+    });
+    // alert("hiiiiiiiiii");
+    // Navigate to the home page on successful login
+    navigate("/");
+  }
+// >>>>>>> main
 
   const [userData, setUserData] = useState({
     email: "",
@@ -318,6 +336,16 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+// <<<<<<< finial-code-briks99
+// =======
+    // dispatch(login(userData)); // Assuming you have a login action similar to the register action
+    // setUserData({
+    //   email: "",
+    //   password: "",
+    // });
+    // navigate("/")
+    console.log(isAuth);
+// >>>>>>> main
     if (userData.email.trim() === "") {
       toast({
         title: "Error",
@@ -343,7 +371,38 @@ const Login = () => {
     }
 
     dispatch(login(userData));
+// <<<<<<< finial-code-briks99
   };
+// =======
+    // console.log(isAuth);
+    // Clear the input fields
+    // setUserData({
+    //   email: "",
+    //   password: "",
+    // });
+
+
+
+    // Redirect to the home page on successful login
+  };
+
+  // Chakra UI toast function
+
+  // Display a toast message when user successfully logs in
+  // const handleTourScheduled = () => {
+  //   // Close the modal
+  //   // onScheduleTourModalClose();
+
+  //   // Show toast notification
+  //   toast({
+  //     title: 'Signup Info',
+  //     description: 'Signup successfully!',
+  //     status: 'success',
+  //     duration: 3000,
+  //     isClosable: true,
+  //   });
+  // };
+// >>>>>>> main
 
   return (
     <Box>
@@ -451,6 +510,10 @@ const Login = () => {
                       _hover={{
                         bg: "pink",
                       }}
+// <<<<<<< finial-code-briks99
+// =======
+                      // onClick={handleTourScheduled}
+// >>>>>>> main
                     >
                       Login
                     </Button>

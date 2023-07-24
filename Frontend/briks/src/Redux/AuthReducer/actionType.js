@@ -9,4 +9,8 @@ export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
 export const LOGOUT = "LOGOUT";
+// <<<<<<< finial-code-briks99
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+// =======
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+// >>>>>>> main
