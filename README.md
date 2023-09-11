@@ -5,7 +5,7 @@
 -----
 ###  ONLINE REAL ESTATE MARKETPLACE* 
 
-Project: Make a website with provided reference website.
+Project: Make a Full-Stack website with provided reference website.
 
 Original-Website-Images : https://www.trulia.com/
 
@@ -47,7 +47,7 @@ HOW TO GO THROUGH THE PROJECT -
 
 Briks99 is an Indian online real estate marketplace which is a subsidiary of Zillow. It facilitates buyers and renters to find homes and neighborhoods across the United States through recommendations, local insights, and map overlays that offer details on commutes, schools, churches, and nearby businesses.
 
-In this project, We have tried to manipulate dom elements using REACT, manage state changes using REDUX, CHAKRA UI Library, style using CSS in react, styled components, and tried to make a responsive website and implement dynamic routing to persist data. We have managed our database globally using MongoDB Atlas and Express. With the self-learning efforts and the technology stack, that we have learned till Unit-6 in the Masai School, we were able to clone the whole website with the same looks & features.
+In this project, We have tried to make a FULL-STACK project by manipulating dom elements using REACT, manage state changes using REDUX, CHAKRA UI Library, style using CSS in react, styled components, and tried to make a responsive website and implement dynamic routing to persist data. We have managed our database globally using MongoDB Atlas and Express. With the self-learning efforts and the technology stack, that we have learned till Unit-6 in the Masai School, we were able to clone the whole website with the same looks & features.
 
 This is a collaborative project built within 5 days by a team of 4 members 
 
