@@ -16,10 +16,12 @@ router.post("/login", async (req, res) => {
 
     const admin = await Admin.findOne({ username });
 
+
+
     if (admin.username === username && admin.password === password) {
       return res.status(200).send({ msg: "Admin Login Successful !"});
     }else{
-      return res.status(400).send({ msg: "Wrong Credentials !"});
+      return res.status(200).send({ msg: "Wrong Credentials !"});
 
     }
   } catch (error) {
