@@ -18,9 +18,12 @@ router.post("/login", async (req, res) => {
 
     if (admin.username === username && admin.password === password) {
       return res.status(200).send({ msg: "Admin Login Successful !"});
+    }else{
+      return res.status(400).send({ msg: "Wrong Credentials !"});
+
     }
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(500).send(error.message);
   }
 });
 
