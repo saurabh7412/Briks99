@@ -9,11 +9,12 @@ Project: Make a Full-Stack website with provided reference website.
 
 Original-Website-Images : https://www.trulia.com/
 
-Cloned-Website: https://stalwart-fairy-7587d7.netlify.app/
+Cloned-Website: https://briks99.netlify.app/
 
 HOW TO GO THROUGH THE PROJECT -
 - First, go to Login or signup ( for the first time ).
-- After login go to Admin Page.
+- After Login You can surf the pages.
+- Go to Admin Page.
 - Use the following credentials to log in as Admin
    - Username -  saurabh
    - Password -  saurabh123
