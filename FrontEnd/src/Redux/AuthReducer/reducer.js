@@ -1,4 +1,3 @@
-// reducer.js
 import {
   LOGIN_ERROR,
   LOGIN_REQUEST,
@@ -7,6 +6,7 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   LOGOUT,
+  LOGOUT_ERROR,
 } from "./actionType";
 
 const initialState = {
@@ -24,21 +24,23 @@ export const reducer = (state = initialState, { type, payload }) => {
     }
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS: {
-      localStorage.setItem("token", payload)
       return { ...state, isLoading: false, isAuth: true, token: payload };
-
     }
     case LOGIN_ERROR:
     case SIGNUP_ERROR: {
       return { ...state, isLoading: false, isError: true };
     }
-    case LOGOUT: // Handle the LOGOUT action
+    case LOGOUT: {
+      localStorage.removeItem("token");
       return {
         ...state,
         isAuth: false,
         token: null,
       };
-      
+    }
+    case LOGOUT_ERROR: {
+      return { ...state, isError: true };
+    }
     default: {
       return state;
     }

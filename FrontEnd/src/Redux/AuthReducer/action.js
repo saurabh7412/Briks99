@@ -1,4 +1,6 @@
-// actions.js
+
+
+
 import axios from "axios";
 import {
   LOGIN_ERROR,
@@ -20,10 +22,9 @@ export const login = (userData) => (dispatch) => {
     )
     .then((res) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
-      // console.log(res)
+      localStorage.setItem("token", res.data.token);
     })
     .catch((err) => {
-      // console.log(err.response.data)
       dispatch({ type: LOGIN_ERROR });
     });
 };
@@ -37,6 +38,7 @@ export const register = (userData) => (dispatch) => {
     )
     .then((res) => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.token });
+      localStorage.setItem("token", res.data.token);
     })
     .catch((err) => {
       dispatch({ type: SIGNUP_ERROR });
@@ -45,10 +47,11 @@ export const register = (userData) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
-
   axios
     .get("https://enormous-library-3081-backend.onrender.com/user/logout")
     .then((res) => {
+      localStorage.removeItem("token");
+      dispatch({ type: LOGOUT });
       console.log("Logout successful");
     })
     .catch((err) => {

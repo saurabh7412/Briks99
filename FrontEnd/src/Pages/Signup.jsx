@@ -1,32 +1,29 @@
-// import React, { useEffect, useState } from "react";
+
+
+// import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { register } from "../Redux/AuthReducer/action";
-// // import authReducer from "./auth/reducer";
 // import {
 //   Flex,
 //   Box,
 //   FormControl,
 //   FormLabel,
 //   Input,
-//   Checkbox,
 //   Stack,
 //   Image,
 //   Button,
 //   Heading,
 //   Link,
-//   Text,
 //   useColorModeValue,
 //   useToast,
-//   // toastIdRef,
 // } from "@chakra-ui/react";
 // import Navbar from "../components/Navbar";
 // import Footer from "../components/Footer";
 // import SignupLogo from "../img/signup.png";
-// import Home from "./Home";
 
 // const Signup = () => {
 //   const dispatch = useDispatch();
-//   const { isError, token } = useSelector((state) => state.auth);
+//   const { isError } = useSelector((state) => state.auth);
 //   const toast = useToast();
 //   const [userData, setUserData] = useState({
 //     name: "",
@@ -41,31 +38,19 @@
 //     });
 //   };
 
-//   // const handleSubmit = (e) => {
-//   //   e.preventDefault();
-//   //   dispatch(register(userData));
-//   //   setUserData("");
-//   // };
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 
-//     if (userData.name.length === 0 || userData.email.length === 0 || userData.password.length === 0) {
+//     if (
+//       userData.name.trim() === "" ||
+//       userData.email.trim() === "" ||
+//       userData.password.trim() === ""
+//     ) {
 //       return toast({
-//         title: 'Error',
+//         title: "Error",
 //         description: "Please fill all input fields.",
-//         status: 'error',
-//         position: 'top',
-//         duration: 4000,
-//         isClosable: true,
-//       });
-//     }
-
-//     if(userData.name.length<1 || userData.email.length<1 || userData.password.length<8){
-//       return toast({
-//         title: 'Success',
-//         description: "Success register",
-//         status: 'success',
-//         position: 'top',
+//         status: "error",
+//         position: "top",
 //         duration: 4000,
 //         isClosable: true,
 //       });
@@ -74,7 +59,7 @@
 //     if (userData.password.length < 8) {
 //       return toast({
 //         title: "Failed!!",
-//         description: "Password must be of at least six characters.",
+//         description: "Password must be at least eight characters long.",
 //         status: "error",
 //         position: "top",
 //         duration: 4000,
@@ -89,55 +74,15 @@
 //       password: "",
 //     });
 
+//     toast({
+//       title: "Success",
+//       description: "Registration successful!",
+//       status: "success",
+//       position: "top",
+//       duration: 4000,
+//       isClosable: true,
+//     });
 //   };
-
-//   // useEffect(() => {
-//   //   if (isError) {
-//   //     toastIdRef.current = toast({
-//   //       title: "User Already registered.",
-//   //       description: "Please login to continue!!",
-//   //       status: "warning",
-//   //       position: "top",
-//   //       duration: 4000,
-//   //       isClosable: true,
-//   //     });
-//   //   }
-//   //   return () => {
-//   //     if (toastIdRef.current) {
-//   //       toast.close(toastIdRef.current);
-//   //     }
-//   //   };
-//   // }, [isError]);
-//   // useEffect(() => {
-//   //   if()
-//   // })
-
-//   // const handleTourScheduled = () => {
-//   //   // Close the modal
-//   //   // onScheduleTourModalClose();
-
-//   //   // Show toast notification
-//   //   toast({
-//   //     title: 'Signup Info',
-//   //     description: 'Signup successfully!',
-//   //     status: 'success',
-//   //     duration: 3000,
-//   //     isClosable: true,
-//   //   });
-//   // };
-
-//   // const toast = useToast(); // Chakra UI toast function
-
-//   // // Display a toast message when user successfully registers
-//   // if (auth.success) {
-//   //   toast({
-//   //     title: "Registration successful!",
-//   //     description: "You have successfully registered.",
-//   //     status: "success",
-//   //     duration: 5000,
-//   //     isClosable: true,
-//   //   });
-//   // }
 
 //   return (
 //     <Box>
@@ -258,9 +203,8 @@
 //                       bg={"#d7b256"}
 //                       color={"white"}
 //                       _hover={{
-//                         bg: "pink",
+//                         bg: "#ffc0cb",
 //                       }}
-//                       // onClick={handleTourScheduled}
 //                     >
 //                       Sign up
 //                     </Button>
@@ -292,11 +236,10 @@
 
 // export default Signup;
 
-// //
 
-// //https://o.remove.bg/downloads/b4857859-2e30-47fd-8cc2-9aceb80f14c6/sign-page-abstract-concept-vector-illustration_107173-25670-removebg-preview.png
 
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../Redux/AuthReducer/action";
 import {
@@ -313,14 +256,16 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SignupLogo from "../img/signup.png";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, isAuth, errorMessage } = useSelector((state) => state.auth);
   const toast = useToast();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -334,8 +279,10 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
 
     if (
       userData.name.trim() === "" ||
@@ -352,10 +299,11 @@ const Signup = () => {
       });
     }
 
-    if (userData.password.length < 8) {
+    if (!passwordRegex.test(userData.password)) {
       return toast({
         title: "Failed!!",
-        description: "Password must be at least eight characters long.",
+        description:
+          "Password must be at least eight characters long and contain at least one uppercase letter and one special character.",
         status: "error",
         position: "top",
         duration: 4000,
@@ -364,21 +312,35 @@ const Signup = () => {
     }
 
     dispatch(register(userData));
-    setUserData({
-      name: "",
-      email: "",
-      password: "",
-    });
-
-    toast({
-      title: "Success",
-      description: "Registration successful!",
-      status: "success",
-      position: "top",
-      duration: 4000,
-      isClosable: true,
-    });
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      toast({
+        title: "Success",
+        description: "Registration successful!",
+        status: "success",
+        position: "top",
+        duration: 4000,
+        isClosable: true,
+        onCloseComplete: () => navigate("/login"),
+      });
+      setUserData({
+        name: "",
+        email: "",
+        password: "",
+      });
+    } else if (isError) {
+      toast({
+        title: "Error",
+        description: errorMessage || "Registration failed. Please try again.",
+        status: "error",
+        position: "top",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
+  }, [isAuth, isError, errorMessage, toast, navigate]);
 
   return (
     <Box>
@@ -430,7 +392,6 @@ const Signup = () => {
                 <form onSubmit={handleSubmit}>
                   <FormControl>
                     <FormLabel>
-                      {" "}
                       Name <span style={{ color: "red" }}>*</span>
                     </FormLabel>
                     <Input
@@ -459,7 +420,8 @@ const Signup = () => {
 
                   <FormControl>
                     <FormLabel>
-                      Password <span style={{ color: "red" }}>*</span>
+                      Password <span style={{fontSize:'13px'}}>(at least one uppercase letter, one special character, and at least 8 characters)</span> 
+                      <span style={{ color: "red" }}>*</span>
                     </FormLabel>
                     <Input
                       type="password"
